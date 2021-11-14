@@ -1,3 +1,10 @@
+resource "aws_route53_zone" "this" {
+  name          = var.domain_name
+  force_destroy = true
+
+  tags = var.tags
+}
+
 resource "aws_acm_certificate" "this" {
   domain_name       = var.domain_name
   validation_method = "DNS"
@@ -23,7 +30,7 @@ resource "aws_route53_record" "this" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = var.route53_zone
+  zone_id         = aws_route53_zone.this.route53_zone
 }
 
 resource "aws_acm_certificate_validation" "this" {
