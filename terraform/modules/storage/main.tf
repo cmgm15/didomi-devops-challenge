@@ -34,3 +34,11 @@ module "rds_proxy" {
 
   tags = var.tags
 }
+
+module "s3_large_files" {
+  source = "./s3"
+
+  name = var.name
+
+  tags = var.tags
+}
