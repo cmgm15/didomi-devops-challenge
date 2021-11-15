@@ -9,7 +9,7 @@ variable "app" {
 }
 
 variable "tags" {
-  description = "Tags for the S3 bucket"
+  description = "Tags associated to the resources"
   type        = map(string)
 }
 

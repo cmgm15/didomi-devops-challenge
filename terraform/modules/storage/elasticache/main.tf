@@ -1,3 +1,9 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of Elasticache Redis Cluster.
+*/
+
 resource "aws_elasticache_subnet_group" "redis" {
   description = "Elasticache subnet group of private subnets"
   name        = "${var.name}-redis-sng"
@@ -7,6 +13,8 @@ resource "aws_elasticache_subnet_group" "redis" {
 resource "aws_elasticache_cluster" "redis" {
   cluster_id           = var.name
   replication_group_id = aws_elasticache_replication_group.redis.id
+
+  tags = var.tags
 }
 
 resource "aws_elasticache_replication_group" "redis" {
@@ -27,5 +35,11 @@ resource "aws_elasticache_replication_group" "redis" {
   subnet_group_name             = aws_elasticache_subnet_group.redis.name
   snapshot_retention_limit      = var.redis_snapshot_period
   apply_immediately             = true
-  tags                          = var.tags
+
+  cluster_mode {
+    replicas_per_node_group = 1
+    num_node_groups         = 2
+  }
+
+  tags = var.tags
 }

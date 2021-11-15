@@ -1,3 +1,10 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of RDS Aurora-Postgresql cluster with serverless provisioned setup.
+  * Also it includes creation of RDS Proxy.
+*/
+
 resource "aws_db_subnet_group" "rds" {
   name        = "${var.name}-sng"
   description = "Our main group of subnets"
@@ -10,6 +17,7 @@ resource "aws_rds_cluster" "rds" {
   cluster_identifier     = var.name
   database_name          = var.name
   engine                 = var.rds_engine
+  engine_mode            = "serverless"
   engine_version         = var.rds_engine_version
   apply_immediately      = false
   availability_zones     = var.availability_zones
@@ -28,6 +36,14 @@ resource "aws_rds_cluster" "rds" {
   preferred_maintenance_window = "sun:08:00-sun:09:00"
 
   storage_encrypted = true
+
+  scaling_configuration {
+    auto_pause               = true
+    max_capacity             = 384
+    min_capacity             = 2
+    seconds_until_auto_pause = 600
+    timeout_action           = "RollbackCapacityChange"
+  }
 
   tags = var.tags
 }

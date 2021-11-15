@@ -1,5 +1,9 @@
-variable "domain_name" {}
+variable "domain_name" {
+  type        = string
+  description = "The domain name to be created"
+}
 
-variable "route53_zone" {}
-
-variable "tags" {}
+variable "tags" {
+  description = "Tags associated to the resources"
+  type        = map(string)
+}

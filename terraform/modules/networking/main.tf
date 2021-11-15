@@ -1,3 +1,10 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of VPC.
+  * Also it includes creation of security groups for Lambda, RDS and Elasticache.
+*/
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "v3.11.0"

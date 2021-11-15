@@ -26,4 +26,7 @@ variable "rds_sg" {}
 
 variable "secret_arn" {}
 
-variable "tags" {}
+variable "tags" {
+  description = "Tags associated to the resources"
+  type        = map(string)
+}

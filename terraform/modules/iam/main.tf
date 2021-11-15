@@ -1,5 +1,13 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of IAM user for CICD setup and IAM role required for RDS Proxy setup.
+*/
+
 resource "aws_iam_user" "cicd" {
   name = "${var.name}-gitlab-cicd"
+
+  tags = var.tags
 }
 
 resource "aws_iam_access_key" "cicd" {
@@ -15,6 +23,8 @@ resource "aws_iam_user_policy" "cicd" {
 resource "aws_iam_role" "rds_proxy" {
   name               = "${var.name}-rds_proxy-role"
   assume_role_policy = file("${path.module}/policies/rds_proxy_role.json")
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "rds_proxy_secret_policy" {

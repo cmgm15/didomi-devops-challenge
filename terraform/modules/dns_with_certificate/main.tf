@@ -1,3 +1,10 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of DNS Hosted zone in route53 and ACM certificate.
+  * This include the validation of the certificate created with the DNS.
+*/
+
 resource "aws_route53_zone" "this" {
   name          = var.domain_name
   force_destroy = true

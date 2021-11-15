@@ -1,3 +1,10 @@
+/**
+  * # README.md
+  * 
+  * Terraform module for creation of storage for the application.
+  * It includes redis cluster, rds aurora postgresql cluster and s3 bucket.
+*/
+
 module "redis" {
   source = "./elasticache"
 
