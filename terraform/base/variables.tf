@@ -3,7 +3,7 @@ variable "owner" {}
 variable "app" {}
 
 variable "tags" {
-	type = map(string)
+  type = map(string)
 }
 
 variable "region" {}
