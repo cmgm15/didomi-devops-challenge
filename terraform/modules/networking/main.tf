@@ -25,10 +25,10 @@ resource "aws_security_group" "rds" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = var.rds_port
-    to_port          = var.rds_port
-    protocol         = "tcp"
+    description     = "TLS from VPC"
+    from_port       = var.rds_port
+    to_port         = var.rds_port
+    protocol        = "tcp"
     security_groups = [aws_security_group.lambda.id]
 
   }
@@ -42,10 +42,10 @@ resource "aws_security_group" "elasticache" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = var.elasticache_port
-    to_port          = var.elasticache_port
-    protocol         = "tcp"
+    description     = "TLS from VPC"
+    from_port       = var.elasticache_port
+    to_port         = var.elasticache_port
+    protocol        = "tcp"
     security_groups = [aws_security_group.lambda.id]
 
   }
@@ -59,18 +59,18 @@ resource "aws_security_group" "lambda" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = [var.cidr_block]
+    description = "TLS from VPC"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.cidr_block]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = var.tags
