@@ -24,12 +24,12 @@ variable "public_subnets" {
 }
 
 variable "rds_port" {
-  type        = list(string)
+  type        = string
   description = "Database port to setup the security groups required"
 }
 
 variable "elasticache_port" {
-  type        = list(string)
+  type        = string
   description = "Elasticache port to setup the security groups required"
 }
 

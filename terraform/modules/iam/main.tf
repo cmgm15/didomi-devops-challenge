@@ -54,5 +54,5 @@ data "aws_iam_policy_document" "rds_proxy_secret_policy" {
 resource "aws_iam_role_policy" "rds_proxy" {
   name   = "${var.name}-rds_proxy-policy"
   role   = aws_iam_role.rds_proxy.id
-  policy = data.aws_iam_policy_document.rds_proxy_policy.json
+  policy = data.aws_iam_policy_document.rds_proxy_secret_policy.json
 }

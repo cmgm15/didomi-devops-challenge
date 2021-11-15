@@ -24,6 +24,7 @@ Terraform module for creation of Elasticache Redis Cluster.
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | List of private subnets ids | `list(string)` | n/a | yes |
 | <a name="input_redis_node_type"></a> [redis\_node\_type](#input\_redis\_node\_type) | Instance type for the cluster members | `string` | n/a | yes |
 | <a name="input_redis_nodes"></a> [redis\_nodes](#input\_redis\_nodes) | Number of cluster members | `string` | n/a | yes |
+| <a name="input_redis_parameter_group_name"></a> [redis\_parameter\_group\_name](#input\_redis\_parameter\_group\_name) | Parameter group name for the elasticache replication group | `string` | n/a | yes |
 | <a name="input_redis_port"></a> [redis\_port](#input\_redis\_port) | Port of the redis instance | `string` | n/a | yes |
 | <a name="input_redis_snapshot_period"></a> [redis\_snapshot\_period](#input\_redis\_snapshot\_period) | Snapshot retention limit | `string` | n/a | yes |
 | <a name="input_redis_token"></a> [redis\_token](#input\_redis\_token) | Authentication token for the elasticache | `string` | n/a | yes |

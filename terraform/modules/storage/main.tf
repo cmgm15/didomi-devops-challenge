@@ -11,13 +11,14 @@ module "redis" {
   name            = var.name
   private_subnets = var.private_subnets
 
-  redis_node_type       = var.redis_node_type
-  redis_port            = var.redis_port
-  redis_token           = var.redis_token
-  redis_nodes           = var.redis_nodes
-  redis_version         = var.redis_version
-  redis_snapshot_period = var.redis_snapshot_period
-  sg_redis              = var.sg_redis
+  redis_node_type            = var.redis_node_type
+  redis_port                 = var.redis_port
+  redis_token                = var.redis_token
+  redis_nodes                = var.redis_nodes
+  redis_parameter_group_name = var.redis_parameter_group_name
+  redis_version              = var.redis_version
+  redis_snapshot_period      = var.redis_snapshot_period
+  sg_redis                   = var.sg_redis
 
   tags = var.tags
 }

@@ -21,7 +21,7 @@ resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = var.name
   replication_group_description = "${var.name} Replication Group"
   engine                        = "redis"
-  engine_version                = "5.0.6"
+  engine_version                = var.redis_version
   node_type                     = var.redis_node_type
   port                          = var.redis_port
   at_rest_encryption_enabled    = true
@@ -29,8 +29,7 @@ resource "aws_elasticache_replication_group" "redis" {
   auth_token                    = var.redis_token
   automatic_failover_enabled    = true
   multi_az_enabled              = true
-  number_cache_clusters         = var.redis_nodes
-  parameter_group_name          = var.redis_version
+  parameter_group_name          = var.redis_parameter_group_name
   security_group_ids            = [var.sg_redis]
   subnet_group_name             = aws_elasticache_subnet_group.redis.name
   snapshot_retention_limit      = var.redis_snapshot_period
@@ -38,7 +37,7 @@ resource "aws_elasticache_replication_group" "redis" {
 
   cluster_mode {
     replicas_per_node_group = 1
-    num_node_groups         = 2
+    num_node_groups         = var.redis_nodes
   }
 
   tags = var.tags

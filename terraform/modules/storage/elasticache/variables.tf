@@ -28,6 +28,11 @@ variable "redis_nodes" {
   description = "Number of cluster members"
 }
 
+variable "redis_parameter_group_name" {
+  type        = string
+  description = "Parameter group name for the elasticache replication group"
+}
+
 variable "redis_version" {
   type        = string
   description = "Redis version setup"

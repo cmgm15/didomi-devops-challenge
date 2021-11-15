@@ -37,10 +37,10 @@ resource "aws_route53_record" "this" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = aws_route53_zone.this.route53_zone
+  zone_id         = aws_route53_zone.this.zone_id
 }
 
 resource "aws_acm_certificate_validation" "this" {
-  certificate_arn         = aws_acm_certificate.example.arn
+  certificate_arn         = aws_acm_certificate.this.arn
   validation_record_fqdns = [for record in aws_route53_record.this : record.fqdn]
 }
