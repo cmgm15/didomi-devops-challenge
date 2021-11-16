@@ -15,7 +15,7 @@ For this API infrastructure provisioning it was posible just to use serverless f
 - The configuration required to make requests go through a custom domain (Route53, ACM, etc.)
 - Other resources that you think are appropriate to deploy this architecture at scale
 
-Terraform stack is responsible for:
+### Terraform stack is responsible for:
 
 - VPC setup
 - IAM user for CICD with his IAM Policy
@@ -32,7 +32,7 @@ The Elasticache cluster was provisioned in order to protect and help the databas
 
 The RDS proxy was setup in order to make the api more scalable, more resilient to database failures, and more secure.
 
-Serverless stack is responsible for:
+### Serverless stack is responsible for:
 
 - API Gateway
 - Route53 record setup
@@ -45,6 +45,8 @@ Serverless stack is responsible for:
 In the image below you can find an architecture diagram with the main components. The diagram is not 100% accurate but it tries to demostrate the data flow and the resources that will be deployed using this terraform and serverless stack.
 
 ![architecture-didomi-challenge](./assets/didomi-challenge.png)
+
+You can find more documentation for terraform and serverless in the README.md file that exists for each folder.
 
 ## Assumptions
 
@@ -59,9 +61,9 @@ In the image below you can find an architecture diagram with the main components
 - To download S3 big files we can use some strategies. Some strategies involved setup in the infrastructure side, like using vpc endpoints or EFS systems. For this setup I would like to recommen that the develop for the S3 bucket downloads use multipart feature from S3 and check out streams in nodejs.
 - Get the database secrets directly from secrets manager using the aws-sdk should be the best practice for the lambda functions. Right now there is a environment variables available but probably we can delete that and just use the secret manager directly.
 
-# Next Steps and Improvements
+## Next Steps and Improvements
 
-Getting more information about the API purpose , the budget available and the security requirements more infrastructure features could be enable. There is a little list below:
+If posible for getting more information about the API purpose , the budget available and the security requirements, more infrastructure features could be enable. There is a little list below of posible improvements and next steps:
 
 - Customer managed KMS keys to enable more security in the system and also provide a way to audit all the calls to the KMS operations.
 - EFS to store S3 large objects in order to improve the download time for the lambda functions. EFS and Lambda Functions have a directly integration without a lot of development required.

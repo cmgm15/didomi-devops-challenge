@@ -44,4 +44,6 @@ sls deploy --stage dev
 
 To remove the serverless stack
 
+```
 sls remove --stage dev
+```
