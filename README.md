@@ -1,6 +1,6 @@
 # Didomi DevOps challenge
 
-To find out the requirement you can check in the next [link](https://github.com/didomi/challenges/tree/master/devops)
+To find out the requirements you can check in the next [link](https://github.com/didomi/challenges/tree/master/devops)
 
 ## General Information
 
