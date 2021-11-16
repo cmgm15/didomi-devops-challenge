@@ -1,0 +1,75 @@
+service: didomi-serverless-api
+frameworkVersion: '2 || 3'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  region: us-east-1
+  stackName: didomi-challenge-cf-stack
+  apiName: didomi-challenge-apigw
+  logRetentionInDays: 30
+  environment:
+    DB_CONNECTION_STRING: ${env:DB_CONNECTION_STRING}
+  endpointType: regional
+  apiGateway:
+    description: Api Gateway for Didomi Challenge
+  stackTags:
+    application: didomi-challenge
+    environment: ${opt:stage, 'dev'}
+    purpose: Serverless For Didomi Challenge
+    responsible: cgomez
+  iam:
+    role:
+      name: didomi-serverless-api
+      statements:
+        - Effect: "Allow"
+          Action:
+            - s3:Get*
+            - s3:List*
+          Resource:
+            - arn:aws:s3:::${env:S3_BUCKET_LARGE_FILES}
+      tags:
+        application: didomi-challenge
+        environment: ${opt:stage, 'dev'}
+        purpose: Serverless For Didomi Challenge
+        responsible: cgomez
+  vpc:
+    securityGroupIds:
+      - ${env:SG_LAMBDA}
+    subnetIds:
+      - ${env:SUBNET1_LAMBDA}
+      - ${env:SUBNET2_LAMBDA}
+      - ${env:SUBNET3_LAMBDA}
+  tags:
+    application: didomi-challenge
+    environment: ${opt:stage, 'dev'}
+    purpose: Serverless For Didomi Challenge
+    responsible: cgomez
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: ${self:provider.stage}.${env:DOMAIN_NAME}
+    certificateName: "*.${env:DOMAIN_NAME}"
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: 'regional'
+    apiType: rest
+    autoDomain: false
+    hostedZoneId: Z07652043H0CI42UW4I7L
