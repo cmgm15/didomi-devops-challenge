@@ -15,7 +15,7 @@ For this API infrastructure provisioning it was posible just to use serverless f
 - The configuration required to make requests go through a custom domain (Route53, ACM, etc.)
 - Other resources that you think are appropriate to deploy this architecture at scale
 
-### Terraform stack is responsible for:
+**Terraform stack is responsible for:**
 
 - VPC setup
 - IAM user for CICD with his IAM Policy
@@ -32,7 +32,7 @@ The Elasticache cluster was provisioned in order to protect and help the databas
 
 The RDS proxy was setup in order to make the api more scalable, more resilient to database failures, and more secure.
 
-### Serverless stack is responsible for:
+**Serverless stack is responsible for:**
 
 - API Gateway
 - Route53 record setup
