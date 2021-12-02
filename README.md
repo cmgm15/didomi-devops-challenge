@@ -6,6 +6,10 @@ To find out the requirements you can check in the next [link](https://github.com
 
 For this API infrastructure provisioning it was posible just to use serverless framework and terraform. The main resources to be provisioned are the below:
 
+For this API infrastructure provisioning it was posible just to use serverless framework and terraform. The main resources to be provisioned are the below:
+
+For this API infrastructure provisioning it was posible just to use serverless framework and terraform. The main resources to be provisioned are the below:
+
 - A VPC with private subnets
 - An IAM user for Gitlab to run the deployment for the lambda in the pipeline
 - Policies for the Gitlab user with the minimal required permissions to run the deployment
